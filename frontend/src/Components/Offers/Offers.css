@@ -1,0 +1,152 @@
+.offers {
+    width: 75%;
+    height: 60vh;
+    display: flex;
+    margin: auto;
+    margin-top: 30px;
+    padding: 0 0 0 140px !important;
+    margin-bottom: 150px;
+    background: linear-gradient(180deg, #CBE6F6 0%, #e1ffea22 60%);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.offers-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2; /* Ensure text is above image */
+}
+
+.offers-left h1 {
+    font-family: Poppins, sans-serif;
+    color: #171717;
+    font-size: 4rem;
+    font-weight: 400;
+    opacity: 0.9; /* Slightly reduce opacity for a glassy effect */
+}
+
+.offers-left p {
+    color: #171717;
+    font-size: 1.5rem;
+    font-weight: 300;
+    opacity: 0.8; /* Adjust opacity for a glassy effect */
+}
+
+.offers-right img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    filter: brightness(0.8); /* Slightly reduce brightness for a glassy look */
+}
+
+.offers:hover .offers-right img {
+    filter: brightness(1); /* Restore brightness on hover for a dynamic effect */
+    transform: scale(1.03); /* Scale up on hover for a subtle zoom effect */
+}
+
+
+@media(max-width:1280px){
+    .offers{
+        padding: 0px 0px 0px 140px;
+        margin-bottom: 120px;
+        width: 65%;
+    }
+    .offers-left h1{
+        font-size: 40px;
+    }
+    .offers-left p{
+        font-size: 18px;
+    }
+    .offers-right img{
+        height: 100%;
+        width: 100%;
+    }
+    .offers-left button{
+        width: 220px;
+        height: 50px;
+        font-size: 18px;
+    }
+    .offers-right{
+        padding-top: 30px;
+    }
+}
+
+@media(max-width:1024px){
+    .offers{
+        padding: 0px 0px 0px 140px;
+        margin-bottom: 80px;
+        height: 40vh;
+        width: 65%;
+    }
+    .offers-left h1{
+        font-size: 30px;
+    }
+    .offers-left p{
+        font-size: 16px;
+    }
+    .offers-right img{
+        height: 100%;
+        width: 100%;
+    }
+    .offers-left button{
+        width: 160px;
+        height: 40px;
+        font-size: 16px;
+    }
+    .offers-right{
+        padding-top: 10px;
+    }
+}
+
+@media(max-width:800px){
+    .offers{
+        padding: 0px 0px 0px 70px !important;
+        margin-bottom: 60px;
+        width: 65%;
+    }
+    .offers-left h1{
+        font-size: 22px;
+    }
+    .offers-left p{
+        font-size: 13px;
+    }
+    .offers-right img{
+        height: 100%;
+        width: 100%;
+    }
+    .offers-left button{
+        width: 140px;
+        height: 30px;
+        font-size: 12px;
+    }
+}
+
+@media(max-width:500px){
+    .offers{
+        padding: 0px 0px 0px 40px !important;
+        height: 25vh;
+        margin-bottom: 50px;
+        width: 50%;
+    }
+    .offers-left h1{
+        font-size: 16px;
+    }
+    .offers-left p{
+        font-size: 10px;
+    }
+    .offers-right img{
+        height: 100%;
+        width: 100%;
+    }
+    .offers-left button{
+        width: 120px;
+        height: 25px;
+        font-size: 10px;
+        margin-top: 12px;
+    }
+}

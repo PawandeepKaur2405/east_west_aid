@@ -1,0 +1,99 @@
+.popular {
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: 90vh;
+    margin-top: 30px;
+    background-image: url('../Assets/background_img3.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .popular h1 {
+    color: #454a54; /* Muted gray color */
+    font-family: Poppins, sans-serif; /* Modern sans-serif font */
+    font-size: 2rem; /* Reduced font size */
+    font-weight: 300; /* Lighter font weight */
+    letter-spacing: 0.05em; /* Increased letter spacing */
+    text-transform: none; /* No uppercase transformation */
+    margin-top: 30px;
+    line-height: 1.4; /* Adjusted line height */
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+  }
+  
+  .popular hr {
+    width: 40%;
+    height: 2px;
+    border: none;
+    background: #3498db;
+    border-radius: 5px;
+    margin: 10px auto;
+  }
+  
+  .popular-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 50px;
+    gap: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  
+  .popular-item img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .popular-item img:hover {
+    transform: scale(1.1);
+  }
+  
+  @media(max-width:1280px){
+    .popular{
+      height: 70vh;
+    }
+    .popular h1{
+      font-size: 2rem;
+    }
+  }
+  
+  @media(max-width:1024px){
+    .popular{
+      height: 60vh;
+    }
+    .popular h1{
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media(max-width:800px){
+    .popular{
+      height: 50vh;
+      gap: 10px;
+    }
+    .popular h1{
+      font-size: 1.2rem;
+    }
+    .popular hr {
+      width: 30%;
+    }
+  }
+  
+  @media(max-width:500px){
+    .popular{
+      height: 80vh;
+    }
+    .popular-item img {
+      max-width: 100%;
+    }
+  }
+  
