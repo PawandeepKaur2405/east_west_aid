@@ -35,7 +35,6 @@ const LoginSignup = () => {
         }
     } catch (error) {
         console.error('Error during login:', error);
-        // Handle error as needed
     }
 }
 
@@ -62,7 +61,6 @@ const signup = async () => {
         }
     } catch (error) {
         console.error('Error during signup:', error);
-        // Handle error as needed
     }
 }
 

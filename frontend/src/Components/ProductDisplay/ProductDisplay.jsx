@@ -6,13 +6,22 @@ const ProductDisplay = (props) => {
   const { product } = props;
   const { addToCart } = useContext(ShopContext);
 
+  console.log(product);
+
   // State to track the currently selected image
-  const [selectedImage, setSelectedImage] = useState(product.image);
+  const [selectedImage, setSelectedImage] = useState(
+    product && product.image ? product.image : ''
+  );
 
   // Handle click on img-list images
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
+
+  // Check if product is not available
+  if (!product) {
+    return <div>Loading...</div>; // or handle loading state in a different way
+  }
 
   return (
     <div className='productdisplay'>
@@ -37,10 +46,10 @@ const ProductDisplay = (props) => {
         <div className="productdisplay-right-prices">
           <p>Price :</p>
           <div className="productdisplay-right-price-old">
-            ${product.old_price}
+            £{product.old_price}
           </div>
           <div className="productdisplay-right-price-new">
-            ${product.new_price}
+            £{product.new_price}
           </div>
         </div>
         <div className="productdisplay-right-description">

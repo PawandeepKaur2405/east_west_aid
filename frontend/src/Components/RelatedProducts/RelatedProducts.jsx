@@ -31,7 +31,7 @@ const RelatedProducts = () => {
 
   const settings = {
     infinite: true,
-    slidesToShow: 4,
+    slidesToShow: Math.min(4, related_products.length),
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -46,7 +46,7 @@ const RelatedProducts = () => {
           <Slider {...settings}>
             {related_products.map((item, i) => (
               <Item
-                key={i}
+                key={item.id}
                 id={item.id}
                 name={item.name}
                 image={item.image}

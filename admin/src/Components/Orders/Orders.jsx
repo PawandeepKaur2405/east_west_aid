@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './Orders.css';
-import cross_icon from '../../assets/cross_icon.png';
-import { Link } from 'react-router-dom';
 import OrderItem from '../OrderItem/OrderItem';
 
 const Orders = () => {
@@ -40,6 +38,7 @@ const Orders = () => {
   };  
 
   const remove_order = async(id) => {
+    console.log('Removing order:', id);
     await fetch('http://localhost:4000/removeorder', {
         method: 'POST',
         headers: {
@@ -65,7 +64,7 @@ const Orders = () => {
         <hr />
         {orders.map((order, index) => (
         <OrderItem
-          key={index}
+          key={order._id}  // Make sure each key is unique
           id={order._id}
           currentUser={order.currentUser}
           totalCartAmount={order.totalCartAmount}

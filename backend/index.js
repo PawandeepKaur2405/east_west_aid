@@ -233,43 +233,64 @@ const Users = mongoose.model("Users", {
 });
 
 // Creating Endpoint for registering the user
-app.post('/signup', async(req, res)=> {
-    let check = await Users.findOne({email:req.body.email});
-    if(check) {
+app.post('/signup', async (req, res) => {
+    try {
+      // Validate the email format
+      const { email } = req.body;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
         return res.status(400).json({
-            success: false,
-            errors: "Existing user found with same email address"
+          success: false,
+          errors: 'Invalid email format',
         });
-    }
-    let cart = {};
-    for(let i=0 ; i<300 ; i++) {
+      }
+  
+      // Check if the email exists in the database
+      const existingUser = await Users.findOne({ email });
+      if (existingUser) {
+        return res.status(400).json({
+          success: false,
+          errors: 'Existing user found with the same email address',
+        });
+      }
+  
+      // If email is valid and does not exist, proceed with user registration
+      let cart = {};
+      for (let i = 0; i < 300; i++) {
         cart[i] = 0;
-    }
-    const user = new Users({
+      }
+  
+      const user = new Users({
         name: req.body.username,
         email: req.body.email,
         password: req.body.password,
         cartData: cart,
         address: req.body.address,
         contact: req.body.contact,
-    })
-
-    console.log(user);
-    await user.save();
-
-    //For user authentication
-    const data = {
+      });
+  
+      await user.save();
+  
+      // For user authentication
+      const data = {
         user: {
-            id: user.id
-        }
-    }
-
-    const token = jwt.sign(data, 'secret_ecom');
-    res.json({
+          id: user.id,
+        },
+      };
+  
+      const token = jwt.sign(data, 'secret_ecom');
+      res.json({
         success: true,
-        token
-    })
-})
+        token,
+      });
+    } catch (error) {
+      console.error('Error during user registration:', error);
+      res.status(500).json({
+        success: false,
+        errors: 'Internal Server Error',
+      });
+    }
+  });
 
 //Creating endpoint for user login
 app.post('/login', async(req, res) => {
@@ -411,6 +432,9 @@ app.post('/updateuser', fetchUser, async (req, res) => {
         const userId = req.user.id; // Get the user ID from the decoded token
         const updatedUserDetails = req.body;
 
+        console.log("Updated user details : ");
+        console.log(updatedUserDetails);
+
         // Update user details in the database
         await Users.findByIdAndUpdate(userId, updatedUserDetails);
 
@@ -493,16 +517,33 @@ app.get('/allorders', async(req, res) => {
     res.send(orders);
 });
 
-//Endpoint for deleting order
-app.post('/removeorder', async(req, res)=>{
-    await Order.findOneAndDelete({
-        id: req.body.id
-    });
-    console.log("Order Removed");
-    res.json({
-        success: true,
-        name: req.body.name,
-    });
+// Endpoint for deleting order
+app.post('/removeorder', async (req, res) => {
+    try {
+        const orderId = req.body.id;
+
+        const deletedOrder = await Order.findByIdAndDelete(orderId);
+
+        if (!deletedOrder) {
+            console.log("Order not found");
+            return res.status(404).json({
+                success: false,
+                error: 'Order not found',
+            });
+        }
+
+        console.log("Order Removed");
+        res.json({
+            success: true,
+            name: deletedOrder.currentUser.name,
+        });
+    } catch (error) {
+        console.error('Error removing order:', error);
+        res.status(500).json({
+            success: false,
+            errors: 'Internal Server Error',
+        });
+    }
 });
 
 // Endpoint to get user details by userId

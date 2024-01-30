@@ -105,9 +105,9 @@ const CartItems = () => {
               <div className="cartitems-format cartitems-format-main">
                 <img src={product.image} alt="" className='carticon-product-icon'/>
                 <p>{product.name}</p>
-                {product.new_price !== undefined ? <p>${product.new_price}</p> : <p>No Price Available</p>}
+                {product.new_price !== undefined ? <p>£{product.new_price}</p> : <p>No Price Available</p>}
                 <button className='cartitems-quantity'>{cartQuantity}</button>
-                {product.new_price !== undefined ? <p>${product.new_price * cartQuantity}</p> : <p>No Total Available</p>}
+                {product.new_price !== undefined ? <p>£{product.new_price * cartQuantity}</p> : <p>No Total Available</p>}
                 <img className='cartitems-remove-icon' src={remove_icon} onClick={() => { removeFromCart(product.id) }} alt="" />
               </div>
               <hr />
@@ -122,7 +122,7 @@ const CartItems = () => {
           <div>
             <div className="cartitems-total-item">
               <p>Subtotal</p>
-              {getTotalCartAmount !== undefined ? <p>${getTotalCartAmount()}</p> : <p>No Subtotal Available</p>}
+              {getTotalCartAmount !== undefined ? <p>£{getTotalCartAmount()}</p> : <p>No Subtotal Available</p>}
             </div>
             <hr />
             <div className="cartitems-total-item">
@@ -132,7 +132,7 @@ const CartItems = () => {
             <hr />
             <div className="cartitems-total-item">
               <h3>Total</h3>
-              {getTotalCartAmount !== undefined ? <h3>${getTotalCartAmount()}</h3> : <h3>No Total Available</h3>}
+              {getTotalCartAmount !== undefined ? <h3>£{getTotalCartAmount()}</h3> : <h3>No Total Available</h3>}
             </div>
             <div className='cartitems-address'>
             <label htmlFor="address" className="cartitems-label">Delivery Address:</label>

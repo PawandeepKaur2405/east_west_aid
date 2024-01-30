@@ -28,11 +28,15 @@ const OrderDetails = () => {
       // Iterate over each product in the order and fetch details
       const productDetailsPromises = Object.keys(order.cartItems).map(async (productId) => {
         const quantity = order.cartItems[productId];
-
+      
         // Exclude products with a quantity of 0
         if (quantity > 0) {
-          const productData = allProductsData.find((product) => product.id === parseInt(productId, 10));
-
+          console.log('Searching for productId:', productId);
+          console.log('All Products Data:', allProductsData);
+      
+          const productData = allProductsData.find((product) => String(product.id) === String(productId));
+          console.log('Found Product Data:', productData);
+      
           return {
             productId: productId,
             quantity: quantity,
@@ -42,12 +46,14 @@ const OrderDetails = () => {
           return null; // Exclude products with a quantity of 0
         }
       });
+      
 
       // Wait for all product details to be fetched
       const productDetails = (await Promise.all(productDetailsPromises)).filter(Boolean);
 
       // Set the product details in the state only if products are ordered
       if (productDetails.length > 0) {
+        console.log('Product Details:', productDetails);
         setProducts(productDetails);
       }
     } catch (error) {
@@ -107,7 +113,6 @@ const OrderDetails = () => {
 
   return (
     <div className='order-details'>
-
       <h1>Order Details</h1>
       <div className="order-details-user">
         <div>
@@ -116,11 +121,11 @@ const OrderDetails = () => {
         </div>
         <div>
           <label>User:</label>
-          <p>{userDetails==="" ? userDetails.name : 'User'}</p>
+          <p>{userDetails === "" ? userDetails.name : 'User'}</p>
         </div>
         <div>
           <label>Total Cart Amount:</label>
-          <p>${order.totalCartAmount}</p>
+          <p>£{order.totalCartAmount}</p>
         </div>
         <div>
           <label>User Address:</label>
@@ -144,18 +149,19 @@ const OrderDetails = () => {
           {products.map((product) => (
             <li key={product.productId}>
               <div className="order-details-products-container">
-                <img src={product.details.image} alt="" />
+                {product.details && (
+                  <img src={product.details.image} alt="" />
+                )}
                 <div className="order-details-product-list">
-                  <p><label>Product Name:</label> {product.details.name}</p>
+                  <p><label>Product Name:</label> {product.details ? product.details.name : 'N/A'}</p>
                   <p><label>Quantity:</label> {product.quantity}</p>
-                  <p><label>Product Price:</label> ${product.details.new_price}</p>
+                  <p><label>Product Price:</label> £{product.details ? product.details.new_price : 'N/A'}</p>
                 </div>
               </div>
             </li>
           ))}
         </ul>
       </div>
-
     </div>
   );
 };

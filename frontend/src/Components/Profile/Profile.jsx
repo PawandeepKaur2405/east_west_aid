@@ -37,15 +37,19 @@ const Profile = () => {
   };
 
   const handleInputChange = (e) => {
-    setUpdatedUser({
-      ...updatedUser,
+    setUpdatedUser((prevUpdatedUser) => ({
+      ...prevUpdatedUser,
       [e.target.name]: e.target.value,
-    });
+    }));
   };
+  
 
   const handleSave = async () => {
     try {
       const token = localStorage.getItem('auth-token');
+
+      console.log("Inside handle save : ");
+      console.log(updatedUser);
 
       if (token) {
         const response = await fetch('http://localhost:4000/updateuser', {
@@ -78,9 +82,9 @@ const Profile = () => {
         <div className='profile-details'>
           <input
             type='text'
-            name='username'
+            name='name'
             placeholder='Enter your name'
-            value={isEditing ? updatedUser.username || '' : currentUser?.username || ''}
+            value={isEditing ? updatedUser.name || '' : currentUser?.name || ''}
             onChange={handleInputChange}
             disabled={!isEditing}
           />
@@ -111,7 +115,10 @@ const Profile = () => {
         {isEditing ? (
           <button onClick={handleSave}>Save</button>
         ) : (
-          <button onClick={() => setIsEditing(true)}>Edit</button>
+          <button onClick={() => {
+            setUpdatedUser({ ...currentUser });
+            setIsEditing(true);
+          }}>Edit</button>
         )}
       </div>
     </div>
