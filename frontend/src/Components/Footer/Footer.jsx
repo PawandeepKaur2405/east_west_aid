@@ -15,27 +15,13 @@ const Footer = () => {
         <p> <span className='west-logo-text'>WEST</span> AID</p>
         <img className='footer-logo-second' src={foot_logo_2_icon} alt="" />
       </div>
-      <ul className="footer-links">
-        <li>Company</li>
-        <li>Products</li>
-        <li>Offices</li>
-        <li>About</li>
-        <li>Contact</li>
-      </ul>
-      <div className="footer-social-icons">
-        <div className="footer-icons-container">
-            <img src={instagram_icon} alt="" />
-        </div>
-        <div className="footer-icons-container">
-            <img src={pinterest_icon} alt="" />
-        </div>
-        <div className="footer-icons-container">
-            <img src={whatsapp_icon} alt="" />
-        </div>
+      <div className="footer-links">
+        <p>ADDRESS : UNIT 2,EAST AND WEST AID, POSTCODE-WV2 3JN, moor street south, Wolverhampton</p>
+        <p>CONTACT US : 01902420030</p>
       </div>
       <div className="footer-copyright">
         <hr />
-        <p>Copyright @ 2023 - All Rights reserved</p>
+        <p>Copyright @ 2024 - All Rights reserved</p>
       </div>
     </div>
   )

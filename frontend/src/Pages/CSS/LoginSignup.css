@@ -1,12 +1,13 @@
 .loginsignup{
     width: 100%;
-    height: 110vh;
-    background: #fce3fe;
+    height: aut0;
+    background: #CBE6F6;
     padding-top: 100px;
+    padding-bottom: 100px;
 }
 .loginsignup-container{
     width: 580px;
-    height: 600px;
+    height: auto;
     background: white;
     margin: auto;
     padding: 40px 60px;
@@ -69,7 +70,7 @@
     .loginsignup-container{
         width: auto;
         max-width: 500px;
-        max-height: 500px;
+        max-height: auto;
     }
     .loginsignup-container h1{
         margin: 10px 0px;

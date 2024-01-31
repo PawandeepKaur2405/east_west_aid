@@ -235,62 +235,81 @@ const Users = mongoose.model("Users", {
 // Creating Endpoint for registering the user
 app.post('/signup', async (req, res) => {
     try {
-      // Validate the email format
-      const { email } = req.body;
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        return res.status(400).json({
-          success: false,
-          errors: 'Invalid email format',
+        // Validate the email and password format
+        const { email, password, username, address, contact } = req.body;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Check if any of the required fields are missing
+        if (!email || !password || !username || !address || !contact) {
+            return res.status(400).json({
+                success: false,
+                errors: 'Please provide values for all required fields (email, password, username, address, contact).',
+            });
+        }
+
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({
+                success: false,
+                errors: 'Invalid email format',
+            });
+        }
+
+        // Check if the email exists in the database
+        const existingUser = await Users.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({
+                success: false,
+                errors: 'Existing user found with the same email address',
+            });
+        }
+
+        // Validate password strength
+        // At least 8 characters, at least one lowercase letter, one uppercase letter, one number, and one special character
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(password)) {
+            return res.status(400).json({
+                success: false,
+                errors: 'Weak password. It should have at least 8 characters, one lowercase letter, one uppercase letter, one number, and one special character.',
+            });
+        }
+
+        // If all required fields are provided, email is valid, does not exist, and password is strong, proceed with user registration
+        let cart = {};
+        for (let i = 0; i < 300; i++) {
+            cart[i] = 0;
+        }
+
+        const user = new Users({
+            name: username,
+            email,
+            password,
+            cartData: cart,
+            address,
+            contact,
         });
-      }
-  
-      // Check if the email exists in the database
-      const existingUser = await Users.findOne({ email });
-      if (existingUser) {
-        return res.status(400).json({
-          success: false,
-          errors: 'Existing user found with the same email address',
+
+        await user.save();
+
+        // For user authentication
+        const data = {
+            user: {
+                id: user.id,
+            },
+        };
+
+        const token = jwt.sign(data, 'secret_ecom');
+        res.json({
+            success: true,
+            token,
         });
-      }
-  
-      // If email is valid and does not exist, proceed with user registration
-      let cart = {};
-      for (let i = 0; i < 300; i++) {
-        cart[i] = 0;
-      }
-  
-      const user = new Users({
-        name: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        cartData: cart,
-        address: req.body.address,
-        contact: req.body.contact,
-      });
-  
-      await user.save();
-  
-      // For user authentication
-      const data = {
-        user: {
-          id: user.id,
-        },
-      };
-  
-      const token = jwt.sign(data, 'secret_ecom');
-      res.json({
-        success: true,
-        token,
-      });
     } catch (error) {
-      console.error('Error during user registration:', error);
-      res.status(500).json({
-        success: false,
-        errors: 'Internal Server Error',
-      });
+        console.error('Error during user registration:', error);
+        res.status(500).json({
+            success: false,
+            errors: 'Internal Server Error',
+        });
     }
-  });
+});
 
 //Creating endpoint for user login
 app.post('/login', async(req, res) => {

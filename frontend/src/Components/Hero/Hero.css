@@ -16,10 +16,13 @@
 }
 
 .hero-right {
+    margin-top: 80px;
     color: #090909;
     font-size: 26px;
     font-weight: 600;
     flex: 1;
+    width: 70%;
+    height: 70%;
 }
 
 .hero-left p {
@@ -100,8 +103,9 @@
         margin-top: 20px;
         font-size: 18px;
     }
-    .hero-right img{
-        width: 500px;
+    .hero-right {
+        width: 50%;
+        height: 50%;
     }
 }
 
@@ -123,8 +127,9 @@
         height: 50px;
         font-size: 16px;
     }
-    .hero-right img{
-        width: 400px;
+    .hero-right {
+        width: 50%;
+        height: 50%;
     }
 }
 
@@ -146,8 +151,9 @@
         height: 40px;
         font-size: 13px;
     }
-    .hero-right img{
-        width: 300px;
+    .hero-right {
+        width: 50%;
+        height: 50%;
     }
 }
 
