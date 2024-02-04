@@ -59,7 +59,10 @@
   
   @media(max-width:1280px){
     .popular{
-      height: 70vh;
+      height: auto;
+      padding-bottom: 20px;
+      padding-left: 20px;
+      margin-bottom: 30px;
     }
     .popular h1{
       font-size: 2rem;
@@ -68,7 +71,8 @@
   
   @media(max-width:1024px){
     .popular{
-      height: 60vh;
+      height: auto;
+      margin-bottom: 50px;
     }
     .popular h1{
       font-size: 1.5rem;
@@ -77,8 +81,7 @@
   
   @media(max-width:800px){
     .popular{
-      height: 50vh;
-      gap: 10px;
+      height: auto;
     }
     .popular h1{
       font-size: 1.2rem;
@@ -90,10 +93,13 @@
   
   @media(max-width:500px){
     .popular{
-      height: 80vh;
+      height: auto;
     }
     .popular-item img {
       max-width: 100%;
+    }
+    .popular-item{
+      grid-template-columns: 1fr 1fr;
     }
   }
   

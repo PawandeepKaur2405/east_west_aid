@@ -106,8 +106,8 @@
     padding: 0;
     margin: 0;
     position: absolute;
-    top: 70px; /* Adjust the top position based on your design */
-    right: 0; /* Adjust the right position based on your design */
+    top: 70px;
+    right: 0;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 4px;

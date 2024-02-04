@@ -11,6 +11,7 @@ import furniture_banner from './Components/Assets/banner_furniture.png'
 import appliances_banner from './Components/Assets/banner_appliances.png'
 import refurbished_banner from './Components/Assets/banner_refurbished.png'
 import Profile from './Components/Profile/Profile';
+import NewCollections from './Components/NewCollections/NewCollections';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/login' element={<LoginSignup/>}/>
         <Route path='/profile' element={<Profile/>} />
+        <Route path='/shop/newcollections' element={<NewCollections/>} />
       </Routes>
       <Footer />
       </BrowserRouter>

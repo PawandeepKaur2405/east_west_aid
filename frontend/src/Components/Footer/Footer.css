@@ -3,11 +3,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0px auto;
     gap: 50px;
 }
 .footer-logo{
     display: flex;
     align-items: center;
+    margin-top: 0px;
     gap: 20px;
 }
 .footer-logo p{
@@ -16,7 +18,7 @@
     font-weight: 700;
 }
 .footer-links{
-    background-color: lightgray;
+    background-color: #f2f2f2;
     border-radius: 20px;
     display: flex;
     flex-direction: column;

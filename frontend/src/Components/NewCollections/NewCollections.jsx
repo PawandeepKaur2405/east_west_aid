@@ -18,7 +18,7 @@ const NewCollections = () => {
 }, []);
 
   return (
-    <div className='new-collections'>
+    <div className='new-collections' id='newcollections'>
       <h1>FRESH ARRIVALS - Explore the new Collection here</h1>
       <hr />
       <div className="collections">

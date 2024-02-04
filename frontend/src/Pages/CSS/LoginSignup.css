@@ -51,15 +51,6 @@
     color: #2C5F7D;
     font-weight: 600;
 }
-.loginsignup-agree{
-    display: flex;
-    align-items: center;
-    margin-top: 25px;
-    gap: 20px;
-    color: #5c5c5c;
-    font-size: 18px;
-    font-weight: 500;
-}
 .loginsignup-login span{
     cursor: pointer;
 }

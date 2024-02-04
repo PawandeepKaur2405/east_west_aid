@@ -1,8 +1,5 @@
 import React from 'react'
 import './Footer.css'
-import instagram_icon from '../Assets/instagram_icon.png'
-import pinterest_icon from '../Assets/pintester_icon.png'
-import whatsapp_icon from '../Assets/whatsapp_icon.png'
 import footer_logo_1_icon from '../Assets/logo_1.png'
 import foot_logo_2_icon from '../Assets/logo_2.png'
 

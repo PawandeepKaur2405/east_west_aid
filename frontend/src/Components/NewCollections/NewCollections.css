@@ -66,6 +66,7 @@
     }
     .new-collections {
         padding: 15px;
+        margin-bottom: 0px;
     }
 }
 
@@ -74,26 +75,21 @@
         font-size: 30px;
     }
     .collections{
-        gap: 15px;
         margin-top: 20px;
     }
     .new-collections {
         padding: 15px;
+        margin-bottom: 0px;
     }
 }
 
 @media(max-width:800px){
-    .new-collections{
-        gap: 6px;
-    }
     .new-collections h1{
         font-size: 20px;
     }
-    .collections{
-        gap: 5px;
-    }
     .new-collections {
         padding: 10px;
+        margin-bottom: 0px;
     }
 }
 
@@ -105,5 +101,18 @@
     }
     .new-collections {
         padding: 10px;
+        margin-bottom: 0px;
+    }
+}
+
+@media(max-width:300px) {
+    .collections{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .new-collections {
+        padding: 10px;
+        margin-bottom: 0px;
     }
 }
