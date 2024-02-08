@@ -6,13 +6,13 @@ import './RelatedProducts.css';
 import Item from '../Items/Item';
 
 const RelatedProducts = () => {
-  const [related_products, SetRelated_products] = useState([]);
+  const [related_products, setRelatedProducts] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:4000/newcollections')
       .then((response) => response.json())
       .then((data) => {
-        SetRelated_products(data);
+        setRelatedProducts(data);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -23,7 +23,7 @@ const RelatedProducts = () => {
     const { onClick } = props;
     return <div className="slick-arrow slick-next" onClick={onClick}></div>;
   };
-  
+
   const PrevArrow = (props) => {
     const { onClick } = props;
     return <div className="slick-arrow slick-prev" onClick={onClick}></div>;
@@ -31,10 +31,30 @@ const RelatedProducts = () => {
 
   const settings = {
     infinite: true,
-    slidesToShow: Math.min(4, related_products.length),
     slidesToScroll: 1,
+    slidesToShow: 4,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   return (

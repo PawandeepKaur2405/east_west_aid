@@ -39,12 +39,12 @@
     display: flex;
     gap: 20px;
 }
-  .relatedproducts-slider {
+.relatedproducts-slider {
     width: 100%;
     overflow: hidden;
     position: relative;
     margin-left: 50px;
-  }
+}
   
   .slick-arrow {
     font-size: 24px;
@@ -72,8 +72,6 @@
     margin-left: 25px;
   }
   
-  
-
 @media(max-width:1280px){
     .relatedproducts{
         height: 70vh;
@@ -127,10 +125,17 @@
 @media(max-width:500px){
     .relatedproducts{
         height: 90vh;
+        padding-left: 60px;
     }
     .relatedproducts-item{
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 20px;
+    }
+    .slick-arrow{
+        display: none;
+    }
+    .slick-next {
+        display: none;
     }
 }
